@@ -1,4 +1,4 @@
-package com.example.ordersysterm.Database
+package com.example.ordersysterm.orderDatabase
 
 import androidx.room.Dao
 import androidx.room.Delete

@@ -1,5 +1,7 @@
 package com.example.ordersysterm;
 
+import android.app.Activity;
+import android.content.Context;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -13,9 +15,7 @@ import android.widget.Toast;
 
 import com.example.ordersysterm.Adapter.orderAdapter;
 
-import com.example.ordersysterm.Database.orderDao;
-import com.example.ordersysterm.Database.orderData;
-import com.example.ordersysterm.Database.orderDatabase;
+import com.example.ordersysterm.orderDatabase.*;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.tabs.TabLayout;
 
@@ -43,7 +43,7 @@ public class MyOrder extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view=inflater.inflate(R.layout.fragment_my_order, container, false);
-        orderDao orderDao= orderDatabase.Companion.getDatabase(requireContext()).orderDao();
+        //orderDao orderDao= orderDatabase.Companion.getDatabase(requireActivity()).orderDao();
 
         recyclerView=view.findViewById(R.id.recyclerview);
         fab=view.findViewById(R.id.MyOrderFAB);
@@ -56,7 +56,7 @@ public class MyOrder extends Fragment {
 //            dataList.add("Item " + (i + 1));
             new Thread(()->{
                 for (int i = 0; i < 20; i++) {
-                    orderDao.insertOrder(new orderData(null,"Item"+i,1,"nullfornow"));
+                   // orderDao.insertOrder(new orderData(null,"Item"+i,1,"nullfornow"));
                 }
             }).start();
 

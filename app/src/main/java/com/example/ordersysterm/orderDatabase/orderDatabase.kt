@@ -1,4 +1,4 @@
-package com.example.ordersysterm.Database
+package com.example.ordersysterm.orderDatabase
 
 import android.content.Context
 import androidx.room.Database
