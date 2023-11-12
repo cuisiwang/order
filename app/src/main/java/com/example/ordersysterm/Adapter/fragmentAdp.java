@@ -1,7 +1,5 @@
 package com.example.ordersysterm.Adapter;
 
-import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
@@ -12,10 +10,10 @@ import com.example.ordersysterm.MyOrder;
 import com.example.ordersysterm.OrderStatics;
 import com.google.android.material.tabs.TabLayout;
 
-public class myAdp extends FragmentStateAdapter {
+public class fragmentAdp extends FragmentStateAdapter {
 
     TabLayout tab;
-    public myAdp(@NonNull FragmentActivity fragmentActivity, TabLayout tabLayout) {
+    public fragmentAdp(@NonNull FragmentActivity fragmentActivity, TabLayout tabLayout) {
         super(fragmentActivity);
         tab=tabLayout;
     }

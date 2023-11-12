@@ -13,19 +13,21 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.ordersysterm.R;
+import com.example.ordersysterm.orderDatabase.orderDao;
+import com.example.ordersysterm.orderDatabase.orderData;
+import com.example.ordersysterm.orderDatabase.orderDatabase;
 
 import java.util.List;
 
 public class orderAdapter extends RecyclerView.Adapter<orderAdapter.ViewHolder> {
 
     Context context;
-    List<String> dataList;
-    SharedPreferences.Editor editor;
-
-    public orderAdapter(Context context,List<String> dataList){
+    List<orderData> dataList;
+    orderDao orderDao;
+    public orderAdapter(Context context,List<orderData> dataList){
         this.dataList=dataList;
         this.context=context;
-        editor=context.getSharedPreferences("order_data",Context.MODE_PRIVATE).edit();
+        this.orderDao= orderDatabase.Companion.getDatabase(context).orderDao();
     }
 
     @NonNull
@@ -35,18 +37,22 @@ public class orderAdapter extends RecyclerView.Adapter<orderAdapter.ViewHolder> 
         ViewHolder holder=new ViewHolder(view);
         holder.deleteIb.setOnClickListener(v -> {
             int position=holder.getAdapterPosition();
+            orderData tmp=dataList.get(position);
+            //room中删除记录
+            new Thread(()->{
+                orderDao.deleteOrder(tmp);
+            }).start();
             dataList.remove(position);
             notifyItemRemoved(position);
-            //SP中删除记录
-            editor.remove(""+position);
-            editor.apply();
         });
         return holder;
     }
 
     @Override
     public void onBindViewHolder(@NonNull orderAdapter.ViewHolder holder, int position) {
-        holder.orderText.setText(dataList.get(position));
+        holder.orderText.setText(dataList.get(position).getName());
+        holder.timeTv.setText(dataList.get(position).getTime());
+        holder.priceTv.setText("¥"+dataList.get(position).getPrice());
         //头图绑定
     }
 
@@ -55,15 +61,20 @@ public class orderAdapter extends RecyclerView.Adapter<orderAdapter.ViewHolder> 
         return dataList.size();
     }
     public static class ViewHolder extends RecyclerView.ViewHolder {
-        public TextView orderText;
-        public ImageView headerIv;
-        public ImageButton deleteIb;
+        private final TextView orderText;
+        private final ImageView headerIv;
+        private final ImageButton deleteIb;
+        private final TextView timeTv;
+        private final TextView priceTv;
+
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             orderText = itemView.findViewById(R.id.item_order_tv);
             headerIv = itemView.findViewById(R.id.item_order_iv);
             deleteIb = itemView.findViewById(R.id.item_order_delete_ib);
+            timeTv = itemView.findViewById(R.id.item_order_tv_time);
+            priceTv = itemView.findViewById(R.id.item_order_tv_price);
         }
     }
 }

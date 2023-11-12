@@ -1,66 +1,63 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".OrderStatics"
     android:orientation="vertical">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="今日特卖！"
-        android:textSize="50sp"
-        android:textAlignment="center"
-        android:background="#87CEEB"
-        android:textColor="@color/white"/>
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="20sp"
-        android:textSize="30sp"
-        android:text="No.1! 红烧茄子"/>
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="20sp"
-        android:textSize="30sp"
-        android:text="NO.2! 番茄炒鸡蛋"/>
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="20sp"
-        android:textSize="30sp"
-        android:text="NO.3! 重庆鸡公煲"/>
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginHorizontal="20sp"
-        android:gravity="center">
+        android:orientation="vertical">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="今日特卖！"
+            android:textSize="50sp"
+            android:textAlignment="center"
+            android:background="#87CEEB"
+            android:textColor="@color/white"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20sp"
+            android:textSize="30sp"
+            android:text="NO.1! 番茄炒鸡蛋"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20sp"
+            android:textSize="30sp"
+            android:text="NO.2! 红烧茄子"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20sp"
+            android:textSize="30sp"
+            android:text="NO.3! 重庆鸡公煲"/>
+
+
         <com.github.mikephil.charting.charts.PieChart
             android:id="@+id/pieChart"
-            android:layout_weight="4"
-            android:layout_width="0sp"
-            android:layout_height="150sp"/>
-        <View
-            android:layout_width="0sp"
-            android:layout_height="0dp"
-            android:layout_weight="1"/>
+            android:layout_width="match_parent"
+            android:layout_marginHorizontal="60sp"
+            android:layout_marginTop="15sp"
+            android:layout_height="210sp"/>
+
         <com.github.mikephil.charting.charts.HorizontalBarChart
             android:id="@+id/hBarChart"
-            android:layout_weight="4"
-            android:layout_width="0sp"
-            android:layout_height="150sp"/>
+            android:layout_width="match_parent"
+            android:layout_marginHorizontal="20sp"
+            android:layout_marginTop="15sp"
+            android:layout_height="180sp"/>
+
+        <com.github.mikephil.charting.charts.LineChart
+            android:layout_width="match_parent"
+            android:layout_height="200sp"
+            android:layout_marginHorizontal="20sp"
+            android:layout_marginTop="15sp"/>
+
     </LinearLayout>
-
-    <com.github.mikephil.charting.charts.LineChart
-        android:layout_width="match_parent"
-        android:layout_height="160sp"
-        android:layout_marginHorizontal="20sp"
-        android:layout_marginTop="15sp"/>
-
-
-</LinearLayout>
+</ScrollView>
