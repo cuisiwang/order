@@ -30,6 +30,8 @@ public class MyOrder extends Fragment {
     FloatingActionButton fab;
     TabLayout tab;  //通过得到TabLayout实例，在点击添加按钮时触发选择TabLayout中首页对应的tab，实现跳转（权宜之计！）
     List<orderData> dataList;
+    orderAdapter orderAdapter;
+    orderDao orderDao;
     int flag=0;
     public MyOrder(TabLayout tabLayout) {
         tab=tabLayout;
@@ -39,12 +41,9 @@ public class MyOrder extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        orderDao orderDao= orderDatabase.Companion.getDatabase(requireActivity()).orderDao();
+        orderDao= orderDatabase.Companion.getDatabase(requireActivity()).orderDao();
         dataList = new ArrayList<>();
-        new Thread(()->{
-            dataList.addAll(orderDao.selectAll());
-            flag=1;
-        }).start();
+        orderAdapter=new orderAdapter(getContext(),dataList);
     }
 
     @Override
@@ -56,21 +55,31 @@ public class MyOrder extends Fragment {
         fab=view.findViewById(R.id.MyOrderFAB);
 
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        recyclerView.setAdapter(new orderAdapter(getContext(),dataList));
+        recyclerView.setAdapter(orderAdapter);
 
-        while(flag==0){
-            try {
-                Thread.sleep(10);
-                Log.e("sleep", "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
-            }
-        }
         fab.setOnClickListener(v -> {
             Toast.makeText(getContext(), "请到主页下单！", Toast.LENGTH_SHORT).show();
             tab.selectTab(tab.getTabAt(0));
         });
-
         return view;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        dataList.clear();
+        new Thread(()->{
+            dataList.addAll(orderDao.selectAll());
+            flag=1;
+        }).start();
+        while(flag==0){
+            try {
+                Thread.sleep(5);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+        }
+        flag=0;
+        orderAdapter.notifyDataSetChanged();
     }
 }

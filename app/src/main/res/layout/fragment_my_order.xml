@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -15,26 +15,15 @@
         android:id="@+id/MyOrderFAB"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:layout_margin="16sp"
+        android:layout_gravity="bottom|end"
+        android:layout_marginStart="16sp"
+        android:layout_marginTop="16sp"
+        android:layout_marginEnd="16sp"
+        android:layout_marginBottom="16sp"
+        android:backgroundTint="#FFEB3B"
+        app:layout_behavior="com.google.android.material.behavior.HideBottomViewOnScrollBehavior"
         android:src="@drawable/new_order"
-        app:shapeAppearanceOverlay="@style/MyShapeAppearanceOverlay.FloatingActionButton"
-        android:backgroundTint="#FFEB3B"/>
-
-<!--    待解决到底后最后一项删除按钮被FAB挡住的问题-->
-<!--    <TextView-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_below="@+id/recyclerview"-->
-<!--        android:layout_marginTop="-194dp"-->
-<!--        android:layout_marginBottom="10sp"-->
-<!--        android:gravity="center"-->
-<!--        android:paddingVertical="6sp"-->
-<!--        android:text="——————已经到底啦———————"-->
-<!--        android:textColor="#AAAAAA"-->
-<!--        android:textSize="13sp" />-->
+        app:shapeAppearanceOverlay="@style/MyShapeAppearanceOverlay.FloatingActionButton" />
 
 
-
-</RelativeLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
