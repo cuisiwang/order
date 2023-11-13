@@ -57,6 +57,7 @@
                 android:layout_height="180sp"/>
 
             <com.github.mikephil.charting.charts.LineChart
+                android:id="@+id/lineChart"
                 android:layout_width="match_parent"
                 android:layout_height="200sp"
                 android:layout_marginHorizontal="20sp"

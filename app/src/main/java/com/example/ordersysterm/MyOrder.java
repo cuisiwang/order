@@ -1,5 +1,6 @@
 package com.example.ordersysterm;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
@@ -64,6 +65,7 @@ public class MyOrder extends Fragment {
         return view;
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     @Override
     public void onResume() {
         super.onResume();

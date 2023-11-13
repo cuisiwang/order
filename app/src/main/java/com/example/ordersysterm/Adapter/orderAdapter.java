@@ -30,6 +30,7 @@ public class orderAdapter extends RecyclerView.Adapter<orderAdapter.ViewHolder> 
         this.orderDao= orderDatabase.Companion.getDatabase(context).orderDao();
     }
 
+
     @NonNull
     @Override
     public orderAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -37,13 +38,15 @@ public class orderAdapter extends RecyclerView.Adapter<orderAdapter.ViewHolder> 
         ViewHolder holder=new ViewHolder(view);
         holder.deleteIb.setOnClickListener(v -> {
             int position=holder.getAdapterPosition();
-            orderData tmp=dataList.get(position);
-            //room中删除记录
-            new Thread(()->{
-                orderDao.deleteOrder(tmp);
-            }).start();
-            dataList.remove(position);
-            notifyItemRemoved(position);
+            if(position>=0){
+                orderData tmp=dataList.get(position);
+                //room中删除记录
+                new Thread(()->{
+                    orderDao.deleteOrder(tmp);
+                }).start();
+                dataList.remove(position);
+                notifyItemRemoved(position);
+            }
         });
         return holder;
     }
