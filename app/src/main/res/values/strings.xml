@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">orderSysterm</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="heated_list">NO.1 番茄炒鸡蛋\nNO.2 红烧茄子\nNO.3 重庆鸡公煲\nNO.4 隆江猪脚饭\nNO.5 酸菜鱼\n······</string>
+    <string name="heated_list">NO.1 番茄炒鸡蛋\nNO.2 红烧茄子\nNO.3 重庆鸡公煲\nNO.4 酸菜鱼\n······</string>
     <string name="recommend_list">酸菜鱼：香辣酸爽，回味悠长\n烧鹅：肉质鲜嫩，酥香入味\n毛血旺：麻辣鲜香，风味独特\n小炒肉：香辣诱人，入口即化\n······</string>
 </resources>

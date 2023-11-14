@@ -12,6 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.ordersysterm.Adapter.Item.MenuItem;
+import com.example.ordersysterm.MainActivity;
 import com.example.ordersysterm.R;
 import com.example.ordersysterm.orderDatabase.orderData;
 import com.example.ordersysterm.orderDatabase.orderDatabase;
@@ -21,12 +22,12 @@ import java.util.List;
 public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.ViewHolder> {
     Context context;
     List<MenuItem> dataList;
-    List<MenuItem> cartDataList;
+    MainActivity mainActivity;
 
-    public MenuAdapter(Context context, List<MenuItem> dataList,List<MenuItem> cartDataList){
+    public MenuAdapter(Context context, List<MenuItem> dataList,MainActivity activity){
         this.dataList=dataList;
         this.context=context;
-        this.cartDataList=cartDataList;
+        mainActivity=activity;
     }
 
 
@@ -36,7 +37,9 @@ public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.ViewHolder> {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_menu, parent, false);
         MenuAdapter.ViewHolder holder=new MenuAdapter.ViewHolder(view);
         holder.add_btn.setOnClickListener(v -> {
-            cartDataList.add(dataList.get(holder.getAdapterPosition()));
+            // TODO: 2023/11/14 照commit里的改 
+            //cartDataList.add(dataList.get(holder.getAdapterPosition()));
+            mainActivity.addToCartDataList(dataList.get(holder.getAdapterPosition()));
         });
         return holder;
     }

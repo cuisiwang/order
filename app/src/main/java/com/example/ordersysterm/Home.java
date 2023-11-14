@@ -28,10 +28,10 @@ public class Home extends Fragment {
     RecyclerView menuRv;
     List<MenuItem> dataList;
     MenuAdapter menuAdapter;
-    List<MenuItem> cartDataList;
+    MainActivity activity;
 
-    public Home(List<MenuItem> cartDataList) {
-        this.cartDataList=cartDataList;
+    public Home(MainActivity activity) {
+        this.activity=activity;
     }
 
     @Override
@@ -39,12 +39,7 @@ public class Home extends Fragment {
         super.onCreate(savedInstanceState);
         orderDao = orderDatabase.Companion.getDatabase(requireActivity()).orderDao();
         dataList = getDataList();
-        menuAdapter=new MenuAdapter(getContext(),dataList,cartDataList);
-    }
-
-    private List<MenuItem> getDataList() {
-        List<MenuItem> list=new ArrayList<>();
-        return list;
+        menuAdapter=new MenuAdapter(getContext(),dataList,activity);
     }
 
     @Override
@@ -69,6 +64,22 @@ public class Home extends Fragment {
 //            drawerLayout.openDrawer(GravityCompat.END);
 //        });
         return view;
+    }
+    private List<MenuItem> getDataList() {
+        List<MenuItem> list=new ArrayList<>();
+        list.add(new MenuItem("酸菜鱼","好吃好吃好吃好吃好吃好吃好吃好吃好吃好吃好吃",50));
+        list.add(new MenuItem("酸菜鱼","好吃好吃好吃好吃好吃好吃好吃好吃好吃好吃好吃",50));
+        list.add(new MenuItem("酸菜鱼","好吃好吃好吃好吃好吃好吃好吃好吃好吃好吃好吃",50));
+        list.add(new MenuItem("酸菜鱼","好吃好吃好吃好吃好吃好吃好吃好吃好吃好吃好吃",50));
+        list.add(new MenuItem("酸菜鱼","好吃好吃好吃好吃好吃好吃好吃好吃好吃好吃好吃",50));
+        list.add(new MenuItem("酸菜鱼","好吃好吃好吃好吃好吃好吃好吃好吃好吃好吃好吃",50));
+        list.add(new MenuItem("酸菜鱼","好吃好吃好吃好吃好吃好吃好吃好吃好吃好吃好吃",50));
+        list.add(new MenuItem("酸菜鱼","好吃好吃好吃好吃好吃好吃好吃好吃好吃好吃好吃",50));
+        list.add(new MenuItem("酸菜鱼","好吃好吃好吃好吃好吃好吃好吃好吃好吃好吃好吃",50));
+        list.add(new MenuItem("酸菜鱼","好吃好吃好吃好吃好吃好吃好吃好吃好吃好吃好吃",50));
+        list.add(new MenuItem("酸菜鱼","好吃好吃好吃好吃好吃好吃好吃好吃好吃好吃好吃",50));
+        list.add(new MenuItem("酸菜鱼","好吃好吃好吃好吃好吃好吃好吃好吃好吃好吃好吃",50));
+        return list;
     }
 
 

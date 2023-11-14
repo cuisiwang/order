@@ -1,0 +1,4 @@
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:state_pressed="true" android:color="#555555" /> <!-- 按钮被按下时的颜色 -->
+    <item android:color="#FFD500"/>
+</selector>
