@@ -5,17 +5,22 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 
+import com.example.ordersysterm.Adapter.Item.MenuItem;
 import com.example.ordersysterm.Home;
 import com.example.ordersysterm.MyOrder;
 import com.example.ordersysterm.OrderStatics;
 import com.google.android.material.tabs.TabLayout;
 
-public class fragmentAdp extends FragmentStateAdapter {
+import java.util.List;
+
+public class FragmentAdapter extends FragmentStateAdapter {
 
     TabLayout tab;
-    public fragmentAdp(@NonNull FragmentActivity fragmentActivity, TabLayout tabLayout) {
+    List<MenuItem> cartDataList;
+    public FragmentAdapter(@NonNull FragmentActivity fragmentActivity, TabLayout tabLayout,List<MenuItem> cartDataList) {
         super(fragmentActivity);
         tab=tabLayout;
+        this.cartDataList=cartDataList;
     }
 
     @NonNull
@@ -23,13 +28,13 @@ public class fragmentAdp extends FragmentStateAdapter {
     public Fragment createFragment(int position) {
         switch (position) {
             case 0:
-                return new Home();
+                return new Home(cartDataList);
             case 1:
                 return new MyOrder(tab);
             case 2:
                 return new OrderStatics();
         }
-        return new Home();
+        return new Home(cartDataList);
     }
 
     @Override

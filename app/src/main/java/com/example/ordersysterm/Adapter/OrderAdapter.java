@@ -1,7 +1,6 @@
 package com.example.ordersysterm.Adapter;
 
 import android.content.Context;
-import android.content.SharedPreferences;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,12 +18,12 @@ import com.example.ordersysterm.orderDatabase.orderDatabase;
 
 import java.util.List;
 
-public class orderAdapter extends RecyclerView.Adapter<orderAdapter.ViewHolder> {
+public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> {
 
     Context context;
     List<orderData> dataList;
     orderDao orderDao;
-    public orderAdapter(Context context,List<orderData> dataList){
+    public OrderAdapter(Context context, List<orderData> dataList){
         this.dataList=dataList;
         this.context=context;
         this.orderDao= orderDatabase.Companion.getDatabase(context).orderDao();
@@ -33,7 +32,7 @@ public class orderAdapter extends RecyclerView.Adapter<orderAdapter.ViewHolder> 
 
     @NonNull
     @Override
-    public orderAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public OrderAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_order, parent, false);
         ViewHolder holder=new ViewHolder(view);
         holder.deleteIb.setOnClickListener(v -> {
@@ -52,7 +51,7 @@ public class orderAdapter extends RecyclerView.Adapter<orderAdapter.ViewHolder> 
     }
 
     @Override
-    public void onBindViewHolder(@NonNull orderAdapter.ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull OrderAdapter.ViewHolder holder, int position) {
         holder.orderText.setText(dataList.get(position).getName());
         holder.timeTv.setText(dataList.get(position).getTime());
         holder.priceTv.setText("¥"+dataList.get(position).getPrice());

@@ -9,5 +9,4 @@
     <style name="MyShapeAppearanceOverlay.FloatingActionButton" parent="">
         <item name="cornerSize">50%</item>
     </style>
-
 </resources>

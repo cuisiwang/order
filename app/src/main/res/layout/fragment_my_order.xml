@@ -9,7 +9,7 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerview"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="match_parent" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/MyOrderFAB"
@@ -23,7 +23,8 @@
         android:backgroundTint="#FFEB3B"
         app:layout_behavior="com.google.android.material.behavior.HideBottomViewOnScrollBehavior"
         android:src="@drawable/new_order"
-        app:shapeAppearanceOverlay="@style/MyShapeAppearanceOverlay.FloatingActionButton" />
+        app:shapeAppearanceOverlay="@style/MyShapeAppearanceOverlay.FloatingActionButton"
+        android:importantForAccessibility="no" />
 
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

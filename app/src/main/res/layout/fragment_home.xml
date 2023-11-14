@@ -1,14 +1,96 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Home">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".Home"
+    android:orientation="vertical">
 
-   <Button
-       android:layout_width="wrap_content"
+   <TextView
+       android:layout_width="match_parent"
        android:layout_height="wrap_content"
-       android:id="@+id/bt1"
-       android:text="+++"/>
+       android:text="泥电今天吃什么"
+       android:textSize="43sp"
+       android:textAlignment="center"
+       android:background="#f39c12"
+       android:textColor="@color/white"/>
 
-</FrameLayout>
+   <androidx.coordinatorlayout.widget.CoordinatorLayout
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content">
+
+      <LinearLayout
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+         android:orientation="vertical">
+         <LinearLayout
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+             android:paddingHorizontal="15sp"
+             android:layout_marginTop="10sp"
+             >
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:background="@drawable/tv_border">
+               <TextView
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content"
+                   android:text="今日推荐"
+                   android:gravity="center"
+                   android:textSize="20sp"/>
+               <TextView
+                   android:id="@+id/home_recommend_tv"
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content"
+                   android:textSize="12sp"
+                   android:paddingLeft="8sp"
+                   android:paddingBottom="4sp"
+                   android:text="@string/recommend_list"/>
+            </LinearLayout>
+
+            <View
+                android:layout_width="8sp"
+                android:layout_height="0dp"/>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:background="@drawable/tv_border">
+               <TextView
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content"
+                   android:text="今日热卖"
+                   android:gravity="center"
+                   android:textSize="20sp"
+                   />
+               <TextView
+                   android:id="@+id/home_heated_tv"
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content"
+                   android:text="@string/heated_list"
+                   android:paddingLeft="8sp"
+                   />
+            </LinearLayout>
+         </LinearLayout>
+<!--         <Button-->
+<!--             android:layout_width="wrap_content"-->
+<!--             android:layout_height="wrap_content"-->
+<!--             android:id="@+id/bt1"-->
+<!--             android:text="+++"/>-->
+         <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/home_menu_rv"
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"/>
+      </LinearLayout>
+   </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+
+
+</LinearLayout>
