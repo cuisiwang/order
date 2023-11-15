@@ -54,7 +54,11 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> 
     public void onBindViewHolder(@NonNull OrderAdapter.ViewHolder holder, int position) {
         holder.orderText.setText(dataList.get(position).getName());
         holder.timeTv.setText(dataList.get(position).getTime());
-        holder.priceTv.setText("¥"+dataList.get(position).getPrice());
+        String tmp="¥"+dataList.get(position).getPrice();
+        holder.priceTv.setText(tmp);
+        tmp="x"+dataList.get(position).getNumber();
+        holder.numberTv.setText(tmp);
+        holder.dscTv.setText(dataList.get(position).getDescription());
         //头图绑定
     }
 
@@ -67,7 +71,9 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> 
         private final ImageView headerIv;
         private final ImageButton deleteIb;
         private final TextView timeTv;
+        private final TextView dscTv;
         private final TextView priceTv;
+        private final TextView numberTv;
 
 
         public ViewHolder(@NonNull View itemView) {
@@ -76,7 +82,9 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> 
             headerIv = itemView.findViewById(R.id.item_order_iv);
             deleteIb = itemView.findViewById(R.id.item_order_delete_ib);
             timeTv = itemView.findViewById(R.id.item_order_tv_time);
+            dscTv = itemView.findViewById(R.id.item_order_tv_dsc);
             priceTv = itemView.findViewById(R.id.item_order_tv_price);
+            numberTv = itemView.findViewById(R.id.item_order_tv_number);
         }
     }
 }

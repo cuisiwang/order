@@ -34,7 +34,7 @@ public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.ViewHolder> {
     @NonNull
     @Override
     public MenuAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_menu, parent, false);
+        View view = LayoutInflater.from(context).inflate(R.layout.item_menu, parent, false);
         MenuAdapter.ViewHolder holder=new MenuAdapter.ViewHolder(view);
         holder.add_btn.setOnClickListener(v -> {
             // TODO: 2023/11/14 照commit里的改 
@@ -47,7 +47,8 @@ public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.ViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull MenuAdapter.ViewHolder holder, int position) {
         holder.menuName.setText(dataList.get(position).getName());
-        holder.priceTv.setText("¥"+dataList.get(position).getPrice());
+        String tmp="¥"+dataList.get(position).getPrice();
+        holder.priceTv.setText(tmp);
         holder.menuDsc.setText(dataList.get(position).getDescription());
         //头图绑定
     }

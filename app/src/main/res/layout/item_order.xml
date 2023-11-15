@@ -2,7 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="71sp"
-    android:background="#08000000"
+    xmlns:tool="http://schemas.android.com/tools"
+    android:background="#04000000"
     android:paddingHorizontal="15dp"
     android:paddingVertical="3dp"
     android:gravity="center">
@@ -18,7 +19,7 @@
 
     <LinearLayout
         android:layout_width="0dp"
-        android:layout_weight="8"
+        android:layout_weight="7"
         android:layout_height="match_parent"
         android:layout_marginLeft="15sp"
         android:orientation="vertical">
@@ -27,26 +28,44 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="2"
-            android:text="AAAAAAAAAAA"
+            tool:text="AAAAAAAAAAA"
             android:textSize="20sp"
-            android:textFontWeight="20"
+            android:textStyle="bold"
             android:gravity="center_vertical"/>
+        <TextView
+            android:id="@+id/item_order_tv_dsc"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="2"
+            tool:text="Description Here"
+            android:textSize="11sp"
+            android:gravity="center_vertical"
+            android:textColor="#AAAAAA"/>
         <TextView
             android:id="@+id/item_order_tv_time"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
-            android:text="BBBBBBBBBBBBBB"
-            android:textSize="7sp"
+            tool:text="BBBBBBBBBBBBBB"
+            android:textSize="8sp"
             android:textColor="#AAAAAA"/>
     </LinearLayout>
 
     <TextView
+        android:id="@+id/item_order_tv_number"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="2"
+        tool:text="x2"
+        android:gravity="center"
+        android:textSize="15dp"/>
+    <TextView
         android:id="@+id/item_order_tv_price"
         android:layout_width="0dp"
         android:layout_height="match_parent"
-        android:layout_weight="4"
-        android:gravity="center"/>
+        android:layout_weight="3"
+        android:gravity="center"
+        tool:text="¥293"/>
 
     <ImageButton
         android:id="@+id/item_order_delete_ib"
@@ -54,6 +73,7 @@
         android:layout_weight="1"
         android:layout_height="match_parent"
         android:src="@drawable/order_delete"
+        android:scaleType="centerInside"
         android:background="#00000000"/>
 
 
