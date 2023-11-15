@@ -1,11 +1,14 @@
 package com.example.ordersysterm;
 
+import android.content.Context;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.AttributeSet;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -46,14 +49,8 @@ public class Home extends Fragment {
 
         menuRv=view.findViewById(R.id.home_menu_rv);
 
-        menuRv.setLayoutManager(new LinearLayoutManager(getActivity()));
+        menuRv.setLayoutManager(new LinearLayoutManager(requireActivity()));
         menuRv.setAdapter(menuAdapter);
-//        bt1=view.findViewById(R.id.bt1);//暂时不存在
-//        bt1.setOnClickListener(v -> {
-//            new Thread(()->{
-//                orderDao.insertOrder(new orderData("asdqw",111,"2023-10-18"));
-//            }).start();
-//        });
 
         return view;
     }
@@ -75,12 +72,10 @@ public class Home extends Fragment {
         list.add(new MenuItem("京酱肉丝", "猪肉丝配以甜面酱，经典美味", 38));
         list.add(new MenuItem("芝麻鸡", "鸡肉裹上芝麻炸至金黄，外脆里嫩", 42));
         list.add(new MenuItem("清蒸鲈鱼", "鲈鱼清蒸，肉质鲜嫩，清香可口", 55));
-        list.add(new MenuItem("素炒包菜", "包菜经过快火炒制，保持蔬菜的原汁原味", 25));
+        list.add(new MenuItem("手撕包菜", "包菜经过快火炒制，保持蔬菜的原汁原味", 25));
         list.add(new MenuItem("蚝油生菜", "生菜拌蚝油，清新爽口", 28));
         list.add(new MenuItem("陈皮牛肉", "牛肉片搭配陈皮炖制而成，香气扑鼻", 48));
         list.add(new MenuItem("叉烧包", "香糯的叉烧包裹着美味的叉烧肉", 22));
         return list;
     }
-
-
 }

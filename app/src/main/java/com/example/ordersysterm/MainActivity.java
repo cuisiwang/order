@@ -20,7 +20,6 @@ import com.example.ordersysterm.Adapter.CartAdapter;
 import com.example.ordersysterm.Adapter.FragmentAdapter;
 import com.example.ordersysterm.Adapter.Item.CartItem;
 import com.example.ordersysterm.Adapter.Item.MenuItem;
-import com.example.ordersysterm.Adapter.MenuAdapter;
 import com.example.ordersysterm.orderDatabase.orderDao;
 import com.example.ordersysterm.orderDatabase.orderData;
 import com.example.ordersysterm.orderDatabase.orderDatabase;
@@ -31,6 +30,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -66,7 +66,9 @@ public class MainActivity extends AppCompatActivity {
             drawerLayout.openDrawer(GravityCompat.END);
         });
         dueButton.setOnClickListener(v -> {
-            new Thread(()->{
+            int previousSize=cartDataList.size();
+            AtomicInteger semaphore= new AtomicInteger();
+            Thread t=new Thread(()->{
                 LocalDateTime currentDateTime = LocalDateTime.now();
                 DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
                 String time=currentDateTime.format(formatter);
@@ -76,7 +78,15 @@ public class MainActivity extends AppCompatActivity {
                     orderDao.insertOrder(order);
                 }
                 cartDataList.clear();
-            }).start();
+                semaphore.set(1);
+            });
+            t.start();
+            try {
+                t.join();
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+            cartAdapter.notifyItemRangeRemoved(0,previousSize);
             Toast.makeText(this, "点单成功！心急吃不了热豆腐哦~", Toast.LENGTH_SHORT).show();
             drawerLayout.closeDrawer(GravityCompat.END);
         });

@@ -30,7 +30,6 @@ public class MyOrder extends Fragment {
     List<orderData> dataList;
     OrderAdapter orderAdapter;
     orderDao orderDao;
-    int semaphore =0;
     public MyOrder(TabLayout tabLayout) {
         tab=tabLayout;
     }
@@ -66,18 +65,15 @@ public class MyOrder extends Fragment {
     public void onResume() {
         super.onResume();
         dataList.clear();
-        new Thread(()->{
+        Thread t=new Thread(()->{
             dataList.addAll(orderDao.selectAll());
-            semaphore =1;
-        }).start();
-        while(semaphore ==0){
-            try {
-                Thread.sleep(5);
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
-            }
+        });
+        t.start();
+        try {
+            t.join();
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
         }
-        semaphore =0;
         orderAdapter.notifyDataSetChanged();
     }
 }

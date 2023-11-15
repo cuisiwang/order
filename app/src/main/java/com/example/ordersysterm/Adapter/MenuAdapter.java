@@ -37,8 +37,6 @@ public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.ViewHolder> {
         View view = LayoutInflater.from(context).inflate(R.layout.item_menu, parent, false);
         MenuAdapter.ViewHolder holder=new MenuAdapter.ViewHolder(view);
         holder.add_btn.setOnClickListener(v -> {
-            // TODO: 2023/11/14 照commit里的改 
-            //cartDataList.add(dataList.get(holder.getAdapterPosition()));
             mainActivity.addToCartDataList(dataList.get(holder.getAdapterPosition()));
         });
         return holder;

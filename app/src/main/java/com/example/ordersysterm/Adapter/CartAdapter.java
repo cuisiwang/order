@@ -45,12 +45,12 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
         holder.minus_btn.setOnClickListener(v -> {
             if(dataList.get(position).getNumber()==1){
                 dataList.remove(position);
-                this.notifyItemRemoved(position);
+                notifyItemRemoved(position);
             }else {
                 CartItem itm = dataList.get(position);
                 dataList.set(position,
                         new CartItem(itm.getName(),itm.getDescription(),itm.getPrice(),itm.getNumber()-1));
-                this.notifyItemChanged(position);
+                notifyItemChanged(position);
             }
         });
         //头图绑定
