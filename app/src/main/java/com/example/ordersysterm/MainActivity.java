@@ -61,7 +61,7 @@ public class MainActivity extends AppCompatActivity {
         dueButton = findViewById(R.id.due_button);
 
         cartDataList=new ArrayList<>();
-        cartAdapter=new CartAdapter(this,cartDataList);
+        cartAdapter=new CartAdapter(this,cartDataList,totalPriceTv);
         cart_rv.setLayoutManager(new LinearLayoutManager(this));
         cart_rv.setAdapter(cartAdapter);
 

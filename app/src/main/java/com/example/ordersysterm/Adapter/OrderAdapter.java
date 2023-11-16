@@ -33,7 +33,7 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> 
     @NonNull
     @Override
     public OrderAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_order, parent, false);
+        View view = LayoutInflater.from(context).inflate(R.layout.item_order, parent, false);
         ViewHolder holder=new ViewHolder(view);
         holder.deleteIb.setOnClickListener(v -> {
             int position=holder.getAdapterPosition();
@@ -54,7 +54,7 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> 
     public void onBindViewHolder(@NonNull OrderAdapter.ViewHolder holder, int position) {
         holder.orderText.setText(dataList.get(position).getName());
         holder.timeTv.setText(dataList.get(position).getTime());
-        String tmp="¥"+dataList.get(position).getPrice();
+        String tmp="¥"+dataList.get(position).getPrice()*dataList.get(position).getNumber();
         holder.priceTv.setText(tmp);
         tmp="x"+dataList.get(position).getNumber();
         holder.numberTv.setText(tmp);
