@@ -60,6 +60,7 @@ public class MyOrder extends Fragment {
         return view;
     }
 
+    //可优化，懒狗了
     @SuppressLint("NotifyDataSetChanged")
     @Override
     public void onResume() {

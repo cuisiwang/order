@@ -66,7 +66,17 @@
             android:id="@+id/cart_rv"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="12"/>
+            android:layout_weight="11"/>
+        <TextView
+            android:id="@+id/total_price_tv"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:textStyle="bold"
+            android:textSize="20dp"
+            android:paddingRight="10sp"
+            android:text="总价：¥0"
+            android:gravity="center_vertical|right"/>
         <TextView
             android:id="@+id/due_button"
             android:layout_width="match_parent"

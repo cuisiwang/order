@@ -42,6 +42,8 @@ public class MainActivity extends AppCompatActivity {
     List<CartItem> cartDataList;
     RecyclerView cart_rv;
     CartAdapter cartAdapter;
+    TextView totalPriceTv;
+    int totalPrice=0;
     TextView dueButton;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,6 +57,7 @@ public class MainActivity extends AppCompatActivity {
         cart_btn=findViewById(R.id.mainBottomCart);
         drawerLayout=findViewById(R.id.drawerLayout);
         cart_rv = findViewById(R.id.cart_rv);
+        totalPriceTv = findViewById(R.id.total_price_tv);
         dueButton = findViewById(R.id.due_button);
 
         cartDataList=new ArrayList<>();
@@ -63,11 +66,20 @@ public class MainActivity extends AppCompatActivity {
         cart_rv.setAdapter(cartAdapter);
 
         cart_btn.setOnClickListener(v -> {
+            totalPrice=0;
+            for(CartItem cartItem : cartDataList){
+                totalPrice+=cartItem.getPrice();
+            }
+            totalPriceTv.setText("总价：¥"+totalPrice);
             drawerLayout.openDrawer(GravityCompat.END);
         });
         dueButton.setOnClickListener(v -> {
             int previousSize=cartDataList.size();
-            AtomicInteger semaphore= new AtomicInteger();
+            if(previousSize==0){
+                Toast.makeText(this, "还没有点菜呢，先看看吃什么吧~", Toast.LENGTH_SHORT).show();
+                drawerLayout.closeDrawer(GravityCompat.END);
+                return;
+            }
             Thread t=new Thread(()->{
                 LocalDateTime currentDateTime = LocalDateTime.now();
                 DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
@@ -78,7 +90,6 @@ public class MainActivity extends AppCompatActivity {
                     orderDao.insertOrder(order);
                 }
                 cartDataList.clear();
-                semaphore.set(1);
             });
             t.start();
             try {
@@ -91,7 +102,7 @@ public class MainActivity extends AppCompatActivity {
             drawerLayout.closeDrawer(GravityCompat.END);
         });
 
-        final String[] bottomMenu = new String[]{"首页", "我的订单", "订单统计"};
+        final String[] bottomMenu = new String[]{"首页", "我的订单", "食堂趣数据"};
         vp.setAdapter(new FragmentAdapter(this,tab,this));
         new TabLayoutMediator(tab,vp,(tab1,position) -> tab1.setText(bottomMenu[position])).attach();
 
